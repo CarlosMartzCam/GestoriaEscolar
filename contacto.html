@@ -190,53 +190,76 @@
     </div>
 
     <!-- FORM -->
-    <div class="contact-form-card reveal reveal-delay-1">
-      <h3>Agenda tu <em>consulta</em></h3>
-      <p class="sub">Gratuita y sin compromiso. Te respondemos a la brevedad.</p>
-      <div class="form-row">
-        <div class="form-group"><label>Nombre</label><input type="text" id="f-nombre" placeholder="Tu nombre"/></div>
-        <div class="form-group"><label>Apellido</label><input type="text" id="f-apellido" placeholder="Tu apellido"/></div>
-      </div>
-      <div class="form-group"><label>WhatsApp / Teléfono</label><input type="tel" id="f-tel" placeholder="+52 55 0000 0000"/></div>
+<div class="contact-form-card reveal reveal-delay-1">
+  <h3>Agenda tu <em>consulta</em></h3>
+  <p class="sub">Gratuita y sin compromiso. Te respondemos a la brevedad.</p>
+
+  <form action="https://formspree.io/f/xzdolzoy" method="POST">
+    <input type="hidden" name="_next" value="https://carlosmartzcam.github.io/GestoriaEscolar/contacto.html">
+    
+    <div class="form-row">
       <div class="form-group">
-        <label>Nivel de interés</label>
-        <select id="f-nivel">
-          <option value="">Selecciona un nivel</option>
-          <option>Licenciatura</option><option>Maestría</option><option>Doctorado</option>
-          <option>No sé aún, quiero orientación</option>
-        </select>
+        <label>Nombre</label>
+        <input type="text" name="nombre" required placeholder="Tu nombre"/>
       </div>
       <div class="form-group">
-        <label>Programa (opcional)</label>
-        <select id="f-prog">
-          <option value="">Selecciona un programa</option>
-          <optgroup label="Licenciaturas">
-            <option>Administración</option><option>Ciencias de la Educación</option>
-            <option>Contaduría</option><option>Criminalística</option><option>Derecho</option>
-            <option>Ingeniería en Mecatrónica</option><option>Ingeniería de Sistemas Computacionales</option>
-            <option>Ingeniería Industrial y de Sistemas</option><option>Mercadotecnia Digital</option>
-            <option>Negocios Internacionales</option><option>Pedagogía</option>
-            <option>Psicopedagogía</option><option>Seguridad Pública y Ciencias Forenses</option><option>Teología</option>
-          </optgroup>
-          <optgroup label="Maestrías">
-            <option>Maestría en Educación y Docencia</option>
-            <option>Maestría en Gestión de Negocios Gastronómicos</option>
-            <option>Maestría en Gestión de Negocios y Finanzas</option>
-            <option>Maestría en Gobierno y Asuntos Públicos</option>
-            <option>Maestría en Ingeniería Industrial, Mecatrónica y de Sistemas</option>
-            <option>Maestría en Juicios Orales</option>
-          </optgroup>
-          <optgroup label="Doctorados">
-            <option>Doctorado en Educación</option>
-            <option>Doctorado en Derecho Procesal</option>
-            <option>Doctorado en Administración y Finanzas</option>
-          </optgroup>
-        </select>
+        <label>Apellido</label>
+        <input type="text" name="apellido" required placeholder="Tu apellido"/>
       </div>
-      <div class="form-group"><label>Mensaje (opcional)</label><textarea id="f-msg" placeholder="Cuéntanos tu experiencia o tus dudas..."></textarea></div>
-      <button class="btn-yellow form-submit" onclick="handleSubmit()">Enviar consulta →</button>
-      <div class="form-success" id="form-success"><p>✓ ¡Recibido! Un asesor te contactará pronto por WhatsApp.</p></div>
     </div>
+
+    <div class="form-group">
+      <label>WhatsApp / Teléfono</label>
+      <input type="tel" name="telefono" required placeholder="+52 55 0000 0000"/>
+    </div>
+
+    <div class="form-group">
+      <label>Nivel de interés</label>
+      <select name="nivel_interes" required>
+        <option value="">Selecciona un nivel</option>
+        <option value="Licenciatura">Licenciatura</option>
+        <option value="Maestría">Maestría</option>
+        <option value="Doctorado">Doctorado</option>
+        <option value="Orientación">No sé aún, quiero orientación</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Programa (opcional)</label>
+      <select name="programa">
+        <option value="">Selecciona un programa</option>
+        <optgroup label="Licenciaturas">
+          <option>Administración</option><option>Ciencias de la Educación</option>
+          <option>Contaduría</option><option>Criminalística</option><option>Derecho</option>
+          <option>Ingeniería en Mecatrónica</option><option>Ingeniería de Sistemas Computacionales</option>
+          <option>Ingeniería Industrial y de Sistemas</option><option>Mercadotecnia Digital</option>
+          <option>Negocios Internacionales</option><option>Pedagogía</option>
+          <option>Psicopedagogía</option><option>Seguridad Pública y Ciencias Forenses</option><option>Teología</option>
+        </optgroup>
+        <optgroup label="Maestrías">
+          <option>Maestría en Educación y Docencia</option>
+          <option>Maestría en Gestión de Negocios Gastronómicos</option>
+          <option>Maestría en Gestión de Negocios y Finanzas</option>
+          <option>Maestría en Gobierno y Asuntos Públicos</option>
+          <option>Maestría en Ingeniería Industrial, Mecatrónica y de Sistemas</option>
+          <option>Maestría en Juicios Orales</option>
+        </optgroup>
+        <optgroup label="Doctorados">
+          <option>Doctorado en Educación</option>
+          <option>Doctorado en Derecho Procesal</option>
+          <option>Doctorado en Administración y Finanzas</option>
+        </optgroup>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Mensaje (opcional)</label>
+      <textarea name="mensaje" placeholder="Cuéntanos tu experiencia o tus dudas..."></textarea>
+    </div>
+
+    <button type="submit" class="btn-yellow form-submit">Enviar consulta →</button>
+  </form>
+</div>
   </div>
 </section>
 
