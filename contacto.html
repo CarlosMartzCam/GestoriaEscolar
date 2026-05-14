@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contacto — Gestoría Escolar</title>
+  <link rel="stylesheet" href="styles.css"/>
+  <style>
+    .page-hero { background:var(--black); padding:88px 5% 80px; border-bottom:4px solid var(--green); }
+    .page-hero-inner { max-width:1200px; margin:0 auto; }
+    .page-hero-title { font-size:clamp(3rem,6vw,5rem); font-weight:800; color:var(--white); line-height:1; margin-bottom:20px; }
+    .page-hero-title em { font-style:italic; color:var(--yellow); }
+    .page-hero-sub { font-size:1.05rem; color:rgba(255,255,255,0.6); max-width:520px; line-height:1.7; }
+
+    #contacto-main { padding:88px 5%; }
+    .contacto-inner { max-width:1200px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:72px; align-items:start; }
+
+    /* LEFT */
+    .contact-options { display:flex; flex-direction:column; gap:14px; margin-top:36px; }
+    .contact-option {
+      display:flex; align-items:center; gap:18px;
+      padding:20px 22px; border:1.5px solid var(--border); border-radius:6px;
+      text-decoration:none; color:inherit; background:var(--white); transition:all 0.25s;
+    }
+    .contact-option:hover { border-color:var(--green); transform:translateX(5px); box-shadow:0 6px 24px rgba(30,77,43,0.1); }
+    .co-icon { width:46px; height:46px; flex-shrink:0; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:1.3rem; }
+    .co-wa { background:rgba(37,211,102,0.1); }
+    .co-phone { background:rgba(30,77,43,0.08); }
+    .co-ig { background:rgba(200,60,200,0.08); }
+    .co-label { font-size:0.7rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--gray-400); margin-bottom:2px; }
+    .co-value { font-size:1rem; font-weight:700; color:var(--text); }
+    .co-arrow { margin-left:auto; color:var(--green); font-size:1rem; opacity:0.5; transition:opacity 0.2s; }
+    .contact-option:hover .co-arrow { opacity:1; }
+
+    .contact-note {
+      margin-top:28px; padding:18px 22px;
+      background:rgba(30,77,43,0.06); border:1.5px solid rgba(30,77,43,0.2); border-radius:6px;
+      font-size:0.85rem; color:var(--gray-600); line-height:1.65;
+    }
+    .contact-note strong { color:var(--green); }
+
+    .faq-mini { margin-top:44px; }
+    .faq-mini h3 { font-size:1.1rem; font-weight:800; color:var(--text); margin-bottom:20px; }
+    .faq-mini-item { border-bottom:1px solid var(--border); }
+    .faq-mini-q {
+      width:100%; background:none; border:none; text-align:left; padding:16px 0;
+      font-family:'Plus Jakarta Sans',sans-serif; font-size:0.9rem; font-weight:600; color:var(--text);
+      cursor:pointer; display:flex; justify-content:space-between; align-items:center; gap:12px; transition:color 0.2s;
+    }
+    .faq-mini-q:hover { color:var(--green); }
+    .faq-mini-item.open .faq-mini-q { color:var(--green); }
+    .faq-mini-chevron { font-size:0.75rem; color:var(--gray-400); transition:transform 0.25s; flex-shrink:0; }
+    .faq-mini-item.open .faq-mini-chevron { transform:rotate(180deg); color:var(--green); }
+    .faq-mini-a { font-size:0.85rem; color:var(--gray-600); line-height:1.7; max-height:0; overflow:hidden; transition:max-height 0.3s ease,padding 0.3s; }
+    .faq-mini-item.open .faq-mini-a { max-height:180px; padding-bottom:16px; }
+
+    /* RIGHT — FORM */
+    .contact-form-card {
+      background:var(--white); border:1.5px solid var(--border);
+      border-radius:8px; padding:48px 44px; position:sticky; top:96px;
+      box-shadow:0 8px 40px rgba(30,77,43,0.08);
+    }
+    .contact-form-card h3 { font-size:1.5rem; font-weight:800; color:var(--text); margin-bottom:6px; }
+    .contact-form-card h3 em { font-style:italic; color:var(--green); }
+    .contact-form-card .sub { font-size:0.87rem; color:var(--gray-600); margin-bottom:32px; }
+    .form-group { margin-bottom:18px; }
+    .form-group label { display:block; font-size:0.72rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--gray-600); margin-bottom:7px; }
+    .form-group input,.form-group select,.form-group textarea {
+      width:100%; padding:12px 16px;
+      background:var(--gray-100); border:1.5px solid var(--border); border-radius:6px;
+      font-family:'Plus Jakarta Sans',sans-serif; font-size:0.92rem; color:var(--text);
+      outline:none; transition:border-color 0.2s,background 0.2s; -webkit-appearance:none;
+    }
+    .form-group input::placeholder,.form-group textarea::placeholder { color:var(--gray-400); }
+    .form-group input:focus,.form-group select:focus,.form-group textarea:focus { border-color:var(--green); background:var(--white); }
+    .form-group select option { background:var(--white); }
+    .form-group textarea { resize:none; height:96px; }
+    .form-row { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+    .form-submit { width:100%; margin-top:8px; }
+    .form-success { display:none; text-align:center; padding:20px; background:rgba(30,77,43,0.07); border:1.5px solid rgba(30,77,43,0.25); border-radius:6px; margin-top:16px; }
+    .form-success p { color:var(--green); font-weight:700; font-size:0.95rem; }
+
+    @media(max-width:960px){ .contacto-inner{grid-template-columns:1fr;} .contact-form-card{position:static;} }
+    @media(max-width:600px){ .contact-form-card{padding:32px 24px;} .form-row{grid-template-columns:1fr;} }
+  </style>
+</head>
+<body>
+<div id="ann-root"></div>
+<div id="nav-root"></div>
+
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <span class="section-label">Contacto</span>
+    <h1 class="page-hero-title">Hablemos<br/>sin <em>compromiso</em></h1>
+    <p class="page-hero-sub">La primera consulta es gratuita. Un asesor te orienta sobre el programa que mejor se adapta a tu perfil.</p>
+  </div>
+</section>
+
+<section id="contacto-main">
+  <div class="contacto-inner">
+    <div>
+      <span class="section-label section-label-green">Encuéntranos en</span>
+      <h2 class="section-title reveal" style="font-size:clamp(1.6rem,3vw,2.4rem)">Elige cómo<br/><em>contactarnos</em></h2>
+      <div class="contact-options">
+        <a href="https://wa.me/525516602103" target="_blank" class="contact-option reveal reveal-delay-1">
+          <div class="co-icon co-wa">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="#25d366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.131.558 4.13 1.533 5.867L.057 23.5l5.79-1.518A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.8 9.8 0 01-5.001-1.367l-.36-.213-3.718.975.99-3.619-.235-.373A9.818 9.818 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
+          </div>
+          <div><div class="co-label">Lic. Barush — WhatsApp</div><div class="co-value">+52 55 1660 2103</div></div>
+          <span class="co-arrow">→</span>
+        </a>
+        <a href="https://wa.me/525574666240" target="_blank" class="contact-option reveal reveal-delay-2">
+          <div class="co-icon co-wa">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="#25d366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.131.558 4.13 1.533 5.867L.057 23.5l5.79-1.518A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.8 9.8 0 01-5.001-1.367l-.36-.213-3.718.975.99-3.619-.235-.373A9.818 9.818 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
+          </div>
+          <div><div class="co-label">Lic. Diego — WhatsApp</div><div class="co-value">+52 55 7466 6240</div></div>
+          <span class="co-arrow">→</span>
+        </a>
+        <a href="https://wa.me/525536769215" target="_blank" class="contact-option reveal reveal-delay-3">
+          <div class="co-icon co-wa">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="#25d366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.131.558 4.13 1.533 5.867L.057 23.5l5.79-1.518A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.8 9.8 0 01-5.001-1.367l-.36-.213-3.718.975.99-3.619-.235-.373A9.818 9.818 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
+          </div>
+          <div><div class="co-label">Lic. Carla — WhatsApp</div><div class="co-value">+52 55 3676 9215</div></div>
+          <span class="co-arrow">→</span>
+        </a>
+        <a href="https://instagram.com/gestoria_escolar33" target="_blank" class="contact-option reveal reveal-delay-4">
+          <div class="co-icon co-ig">📸</div>
+          <div><div class="co-label">Instagram</div><div class="co-value">@gestoria_escolar33</div></div>
+          <span class="co-arrow">→</span>
+        </a>
+        <a href="https://tiktok.com/@gestoria.escolar" target="_blank" class="contact-option reveal reveal-delay-4">
+          <div class="co-icon co-ig">🎵</div>
+          <div><div class="co-label">TikTok</div><div class="co-value">@gestoria.escolar</div></div>
+          <span class="co-arrow">→</span>
+        </a>
+      </div>
+      <div class="contact-note reveal reveal-delay-2">
+        <strong>Primera consulta gratuita.</strong> Disponibles de lunes a domingo. No te comprometes a nada.
+      </div>
+      <div class="faq-mini reveal reveal-delay-3">
+        <h3>Preguntas frecuentes</h3>
+        <div>
+          <div class="faq-mini-item open">
+            <button class="faq-mini-q" onclick="tFaq(this)">¿Cuánto tiempo tarda? <span class="faq-mini-chevron">▾</span></button>
+            <div class="faq-mini-a">Entre 3 y 6 meses según el programa y tu documentación.</div>
+          </div>
+          <div class="faq-mini-item">
+            <button class="faq-mini-q" onclick="tFaq(this)">¿Qué documentos necesito? <span class="faq-mini-chevron">▾</span></button>
+            <div class="faq-mini-a">Identificación, CURP, acta de nacimiento, comprobante de estudios previos y documentación laboral. Tu asesor te dará la lista completa.</div>
+          </div>
+          <div class="faq-mini-item">
+            <button class="faq-mini-q" onclick="tFaq(this)">¿El título tiene validez SEP? <span class="faq-mini-chevron">▾</span></button>
+            <div class="faq-mini-a">Sí. Todos los grados son verificables en el sistema SItítulo de la SEP.</div>
+          </div>
+          <div class="faq-mini-item">
+            <button class="faq-mini-q" onclick="tFaq(this)">¿Necesito ir a clases? <span class="faq-mini-chevron">▾</span></button>
+            <div class="faq-mini-a">No. El proceso está diseñado para personas con experiencia comprobable. No requiere clases presenciales continuas.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FORM -->
+    <div class="contact-form-card reveal reveal-delay-1">
+      <h3>Agenda tu <em>consulta</em></h3>
+      <p class="sub">Gratuita y sin compromiso. Te respondemos a la brevedad.</p>
+      <div class="form-row">
+        <div class="form-group"><label>Nombre</label><input type="text" id="f-nombre" placeholder="Tu nombre"/></div>
+        <div class="form-group"><label>Apellido</label><input type="text" id="f-apellido" placeholder="Tu apellido"/></div>
+      </div>
+      <div class="form-group"><label>WhatsApp / Teléfono</label><input type="tel" id="f-tel" placeholder="+52 55 0000 0000"/></div>
+      <div class="form-group">
+        <label>Nivel de interés</label>
+        <select id="f-nivel">
+          <option value="">Selecciona un nivel</option>
+          <option>Licenciatura</option><option>Maestría</option><option>Doctorado</option>
+          <option>No sé aún, quiero orientación</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Programa (opcional)</label>
+        <select id="f-prog">
+          <option value="">Selecciona un programa</option>
+          <optgroup label="Licenciaturas">
+            <option>Administración</option><option>Ciencias de la Educación</option>
+            <option>Contaduría</option><option>Criminalística</option><option>Derecho</option>
+            <option>Ingeniería en Mecatrónica</option><option>Ingeniería de Sistemas Computacionales</option>
+            <option>Ingeniería Industrial y de Sistemas</option><option>Mercadotecnia Digital</option>
+            <option>Negocios Internacionales</option><option>Pedagogía</option>
+            <option>Psicopedagogía</option><option>Seguridad Pública y Ciencias Forenses</option><option>Teología</option>
+          </optgroup>
+          <optgroup label="Maestrías">
+            <option>Maestría en Educación y Docencia</option>
+            <option>Maestría en Gestión de Negocios Gastronómicos</option>
+            <option>Maestría en Gestión de Negocios y Finanzas</option>
+            <option>Maestría en Gobierno y Asuntos Públicos</option>
+            <option>Maestría en Ingeniería Industrial, Mecatrónica y de Sistemas</option>
+            <option>Maestría en Juicios Orales</option>
+          </optgroup>
+          <optgroup label="Doctorados">
+            <option>Doctorado en Educación</option>
+            <option>Doctorado en Derecho Procesal</option>
+            <option>Doctorado en Administración y Finanzas</option>
+          </optgroup>
+        </select>
+      </div>
+      <div class="form-group"><label>Mensaje (opcional)</label><textarea id="f-msg" placeholder="Cuéntanos tu experiencia o tus dudas..."></textarea></div>
+      <button class="btn-yellow form-submit" onclick="handleSubmit()">Enviar consulta →</button>
+      <div class="form-success" id="form-success"><p>✓ ¡Recibido! Un asesor te contactará pronto por WhatsApp.</p></div>
+    </div>
+  </div>
+</section>
+
+<div id="footer-root"></div>
+<script src="components.js"></script>
+<script>
+  initComponents('contacto');
+  function tFaq(btn) {
+    const item = btn.closest('.faq-mini-item');
+    const open = item.classList.contains('open');
+    document.querySelectorAll('.faq-mini-item').forEach(i => i.classList.remove('open'));
+    if (!open) item.classList.add('open');
+  }
+  function handleSubmit() {
+    const n = document.getElementById('f-nombre').value.trim();
+    const t = document.getElementById('f-tel').value.trim();
+    if (!n || !t) { alert('Por favor ingresa tu nombre y teléfono.'); return; }
+    const niv = document.getElementById('f-nivel').value;
+    const prog = document.getElementById('f-prog').value;
+    const msg = document.getElementById('f-msg').value.trim();
+    let wa = `Hola! Me interesa una consulta gratuita.\n\nNombre: ${n}\nTeléfono: ${t}`;
+    if(niv) wa += `\nNivel: ${niv}`;
+    if(prog) wa += `\nPrograma: ${prog}`;
+    if(msg) wa += `\nMensaje: ${msg}`;
+    window.open(`https://wa.me/525516602103?text=${encodeURIComponent(wa)}`,'_blank');
+    document.getElementById('form-success').style.display = 'block';
+    document.querySelector('.form-submit').style.display = 'none';
+  }
+</script>
+</body>
+</html>

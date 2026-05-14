@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Programas — Gestoría Escolar</title>
+  <link rel="stylesheet" href="styles.css"/>
+  <style>
+    .page-hero { background: var(--black); padding: 88px 5% 80px; border-bottom: 4px solid var(--green); }
+    .page-hero-inner { max-width: 1200px; margin: 0 auto; }
+    .page-hero-title { font-size: clamp(3rem,6vw,5rem); font-weight:800; color:var(--white); line-height:1; margin-bottom:20px; }
+    .page-hero-title em { font-style:italic; color:var(--yellow); }
+    .page-hero-sub { font-size:1.05rem; color:rgba(255,255,255,0.6); max-width:520px; line-height:1.7; }
+
+    .prog-nav {
+      position:sticky; top:76px; z-index:100;
+      background:var(--white); border-bottom:1px solid var(--border); padding:0 5%;
+    }
+    .prog-nav-inner { max-width:1200px; margin:0 auto; display:flex; }
+    .prog-tab {
+      padding:18px 24px; font-size:0.8rem; font-weight:700;
+      letter-spacing:0.06em; text-transform:uppercase; color:var(--gray-400);
+      text-decoration:none; border-bottom:3px solid transparent; transition:all 0.2s;
+    }
+    .prog-tab:hover { color:var(--text); }
+    .prog-tab.active { color:var(--green); border-bottom-color:var(--green); }
+
+    .prog-section { padding:88px 5%; border-bottom:1px solid var(--border); }
+    .prog-section:nth-child(even) { background:var(--gray-100); }
+    .prog-section-inner { max-width:1200px; margin:0 auto; }
+    .prog-section-header { display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:end; margin-bottom:56px; }
+    .prog-section-title { font-size:clamp(2rem,4vw,3rem); font-weight:800; color:var(--text); margin-bottom:6px; }
+    .prog-section-title em { font-style:italic; color:var(--green); }
+    .prog-count { font-size:0.75rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--gray-400); }
+
+    .prog-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+    .prog-item {
+      border:1.5px solid var(--border); border-radius:6px;
+      padding:24px 24px 20px; transition:all 0.25s; background:var(--white);
+      position:relative; overflow:hidden;
+    }
+    .prog-item::before {
+      content:''; position:absolute; left:0; top:0; bottom:0; width:3px;
+      background:var(--green); transform:scaleY(0); transform-origin:bottom; transition:transform 0.3s;
+    }
+    .prog-item:hover { border-color:var(--green); transform:translateX(4px); box-shadow:0 6px 24px rgba(30,77,43,0.1); }
+    .prog-item:hover::before { transform:scaleY(1); }
+    .prog-item-num { font-size:0.7rem; font-weight:700; color:var(--green); opacity:0.5; margin-bottom:8px; }
+    .prog-item-name { font-size:1rem; font-weight:700; color:var(--text); margin-bottom:12px; line-height:1.3; }
+    .prog-item-cta {
+      font-size:0.72rem; font-weight:700; letter-spacing:0.06em;
+      text-transform:uppercase; color:var(--green); text-decoration:none; opacity:0.65; transition:opacity 0.2s;
+    }
+    .prog-item-cta:hover { opacity:1; }
+
+    .prog-cta { background:var(--green); padding:80px 5%; text-align:center; }
+    .prog-cta-inner { max-width:700px; margin:0 auto; }
+    .prog-cta h2 { font-size:clamp(1.8rem,3.5vw,2.8rem); font-weight:800; color:var(--white); margin-bottom:14px; }
+    .prog-cta h2 em { font-style:italic; color:var(--yellow); }
+    .prog-cta p { font-size:1rem; color:rgba(255,255,255,0.65); margin-bottom:36px; }
+    .prog-cta-btns { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
+
+    @media(max-width:900px){
+      .prog-section-header { grid-template-columns:1fr; }
+      .prog-grid { grid-template-columns:1fr 1fr; }
+    }
+    @media(max-width:600px){ .prog-grid { grid-template-columns:1fr; } }
+  </style>
+</head>
+<body>
+<div id="ann-root"></div>
+<div id="nav-root"></div>
+
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <span class="section-label">Nuestros programas</span>
+    <h1 class="page-hero-title">Todos los programas<br/>con validez <em>SEP</em></h1>
+    <p class="page-hero-sub">Licenciaturas, Maestrías y Doctorados por experiencia laboral. Sin clases presenciales.</p>
+  </div>
+</section>
+
+<nav class="prog-nav">
+  <div class="prog-nav-inner">
+    <a href="#licenciaturas" class="prog-tab active">Licenciaturas</a>
+    <a href="#maestrias" class="prog-tab">Maestrías</a>
+    <a href="#doctorados" class="prog-tab">Doctorados</a>
+  </div>
+</nav>
+
+<section class="prog-section" id="licenciaturas">
+  <div class="prog-section-inner">
+    <div class="prog-section-header">
+      <div>
+        <span class="section-label section-label-green">Grado básico</span>
+        <h2 class="prog-section-title"><em>Licenciaturas</em></h2>
+        <p class="prog-count">15 programas disponibles</p>
+      </div>
+      <p class="section-sub">Obtén el respaldo académico que tu experiencia merece. Validez oficial ante la SEP.</p>
+    </div>
+    <div class="prog-grid">
+      <div class="prog-item reveal"><div class="prog-item-num">01</div><h3 class="prog-item-name">Administración</h3><a href="https://wa.me/525659227963" target="_blank" class="prog-item-cta">Consultar →</a></div>
+      <div class="prog-item reveal reveal-delay-1"><div class="prog-item-num">02</div><h3 class="prog-item-name">Ciencias de la Educación</h3><a href="https://wa.me/525659227963" target="_blank" class="prog-item-cta">Consultar →</a></div>
+      <div class="prog-item reveal reveal-delay-2"><div class="prog-item-num">03</div><h3 class="prog-item-name">Ciencias de la Educación Deportiva</h3><a href="https://wa.me/525659227963" target="_blank" class="prog-item-cta">Consultar →</a></div>
+      <div class="prog-item reveal"><div class="prog-item-num">04</div><h3 class="prog-item-name">Contaduría</h3><a href="https://wa.me/525659227963" target="_blank" class="prog-item-cta">Consultar →</a></div>
+      <div class="prog-item reveal reveal-delay-1"><div class="prog-item-num">05</div><h3 class="prog-item-name">Criminalística</h3><a href="https://wa.me/525659227963" target="_blank" class="prog-item-cta">Consultar →</a></div>
+      <div class="prog-item reveal reveal-delay-2"><div class="prog-item-num">06</div><h3 class="prog-item-name">Derecho</h3><a href="https://wa.me/525659227963" target="_blank" class="prog-item-cta">Consultar →</a></div>
+      <div class="prog-item reveal"><div class="prog-item-num">07</div><h3 class="prog-item-name">Ingeniería en Mecatrónica</h3><a href="https://wa.me/525659227963" target="_blank" class="prog-item-cta">Consultar →</a></div>
+      <div class="prog-item reveal reveal-delay-1"><div class="prog-item-num">08</div><h3 class="prog-item-name">Ingeniería de Sistemas Computacionales y Telemática</h3><a href="https://wa.me/525659227963" target="_blank" class="prog-item-cta">Consultar →</a></div>
+      <div class="prog-item reveal reveal-delay-2"><div class="prog-item-num">09</div><h3 class="prog-item-name">Ingeniería Industrial y de Sistemas</h3><a href="https://wa.me/525659227963" target="_blank" class="prog-item-cta">Consultar →</a></div>
+      <div class="prog-item reveal"><div class="prog-item-num">10</div><h3 class="prog-item-name">Mercadotecnia Digital</h3><a href="https://wa.me/525659227963" target="_blank" class="prog-item-cta">Consultar →</a></div>
+      <div class="prog-item reveal reveal-delay-1"><div class="prog-item-num">11</div><h3 class="prog-item-name">Negocios Internacionales</h3><a href="https://wa.me/525659227963" target="_blank" class="prog-item-cta">Consultar →</a></div>
+      <div class="prog-item reveal reveal-delay-2"><div class="prog-item-num">12</div><h3 class="prog-item-name">Pedagogía</h3><a href="https://wa.me/525659227963" target="_blank" class="prog-item-cta">Consultar →</a></div>
+      <div class="prog-item reveal"><div class="prog-item-num">13</div><h3 class="prog-item-name">Psicopedagogía</h3><a href="https://wa.me/525659227963" target="_blank" class="prog-item-cta">Consultar →</a></div>
+      <div class="prog-item reveal reveal-delay-1"><div class="prog-item-num">14</div><h3 class="prog-item-name">Seguridad Pública y Ciencias Forenses</h3><a href="https://wa.me/525659227963" target="_blank" class="prog-item-cta">Consultar →</a></div>
+      <div class="prog-item reveal reveal-delay-2"><div class="prog-item-num">15</div><h3 class="prog-item-name">Teología</h3><a href="https://wa.me/525659227963" target="_blank" class="prog-item-cta">Consultar →</a></div>
+    </div>
+  </div>
+</section>
+
+<section class="prog-section" id="maestrias">
+  <div class="prog-section-inner">
+    <div class="prog-section-header">
+      <div>
+        <span class="section-label section-label-green">Grado avanzado</span>
+        <h2 class="prog-section-title"><em>Maestrías</em></h2>
+        <p class="prog-count">6 programas disponibles</p>
+      </div>
+      <p class="section-sub">Eleva tu perfil profesional y accede a mejores oportunidades con un posgrado de alto valor.</p>
+    </div>
+    <div class="prog-grid">
+      <div class="prog-item reveal"><div class="prog-item-num">01</div><h3 class="prog-item-name">Maestría en Educación y Docencia</h3><a href="https://wa.me/525659227963" target="_blank" class="prog-item-cta">Consultar →</a></div>
+      <div class="prog-item reveal reveal-delay-1"><div class="prog-item-num">02</div><h3 class="prog-item-name">Maestría en Gestión de Negocios Gastronómicos</h3><a href="https://wa.me/525659227963" target="_blank" class="prog-item-cta">Consultar →</a></div>
+      <div class="prog-item reveal reveal-delay-2"><div class="prog-item-num">03</div><h3 class="prog-item-name">Maestría en Gestión de Negocios y Finanzas</h3><a href="https://wa.me/525659227963" target="_blank" class="prog-item-cta">Consultar →</a></div>
+      <div class="prog-item reveal"><div class="prog-item-num">04</div><h3 class="prog-item-name">Maestría en Gobierno y Asuntos Públicos</h3><a href="https://wa.me/525659227963" target="_blank" class="prog-item-cta">Consultar →</a></div>
+      <div class="prog-item reveal reveal-delay-1"><div class="prog-item-num">05</div><h3 class="prog-item-name">Maestría en Ingeniería Industrial, Mecatrónica y de Sistemas</h3><a href="https://wa.me/525659227963" target="_blank" class="prog-item-cta">Consultar →</a></div>
+      <div class="prog-item reveal reveal-delay-2"><div class="prog-item-num">06</div><h3 class="prog-item-name">Maestría en Juicios Orales</h3><a href="https://wa.me/525659227963" target="_blank" class="prog-item-cta">Consultar →</a></div>
+    </div>
+  </div>
+</section>
+
+<section class="prog-section" id="doctorados">
+  <div class="prog-section-inner">
+    <div class="prog-section-header">
+      <div>
+        <span class="section-label section-label-green">Grado superior</span>
+        <h2 class="prog-section-title"><em>Doctorados</em></h2>
+        <p class="prog-count">3 programas disponibles</p>
+      </div>
+      <p class="section-sub">El máximo grado académico para quienes han alcanzado la cima de su campo profesional.</p>
+    </div>
+    <div class="prog-grid">
+      <div class="prog-item reveal"><div class="prog-item-num">01</div><h3 class="prog-item-name">Doctorado en Educación</h3><a href="https://wa.me/525659227963" target="_blank" class="prog-item-cta">Consultar →</a></div>
+      <div class="prog-item reveal reveal-delay-1"><div class="prog-item-num">02</div><h3 class="prog-item-name">Doctorado en Derecho Procesal</h3><a href="https://wa.me/525659227963" target="_blank" class="prog-item-cta">Consultar →</a></div>
+      <div class="prog-item reveal reveal-delay-2"><div class="prog-item-num">03</div><h3 class="prog-item-name">Doctorado en Administración y Finanzas</h3><a href="https://wa.me/525659227963" target="_blank" class="prog-item-cta">Consultar →</a></div>
+    </div>
+  </div>
+</section>
+
+<div class="prog-cta">
+  <div class="prog-cta-inner reveal">
+    <h2>¿No encuentras tu área? <em>Consúltanos</em></h2>
+    <p>Podemos orientarte sobre el programa que mejor se adapta a tu experiencia y objetivos.</p>
+    <div class="prog-cta-btns">
+      <a href="https://wa.me/525659227963" target="_blank" class="btn-yellow">Hablar por WhatsApp</a>
+      <a href="contacto.html" class="btn-outline-white">Formulario de contacto</a>
+    </div>
+  </div>
+</div>
+
+<div id="footer-root"></div>
+<script src="components.js"></script>
+<script>
+  initComponents('servicios');
+  const secs = ['licenciaturas','maestrias','doctorados'];
+  const tabs = document.querySelectorAll('.prog-tab');
+  window.addEventListener('scroll', () => {
+    let cur = secs[0];
+    secs.forEach(id => { const el = document.getElementById(id); if(el && window.scrollY >= el.offsetTop - 180) cur = id; });
+    tabs.forEach(t => t.classList.toggle('active', t.getAttribute('href') === '#'+cur));
+  });
+</script>
+</body>
+</html>

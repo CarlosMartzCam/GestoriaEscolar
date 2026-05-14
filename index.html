@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gestoría Escolar — Tu experiencia, tu título</title>
+  <link rel="stylesheet" href="styles.css"/>
+  <style>
+    /* ── HERO ── */
+    #hero {
+      background: var(--black);
+      padding: 80px 5% 100px;
+      min-height: 88vh;
+      display: flex; align-items: center;
+      position: relative; overflow: hidden;
+    }
+    #hero::after {
+      content: '';
+      position: absolute; right: 0; top: 0; bottom: 0; width: 45%;
+      background: linear-gradient(135deg, var(--green) 0%, var(--green-mid) 100%);
+      clip-path: polygon(12% 0, 100% 0, 100% 100%, 0% 100%);
+      opacity: 0.18;
+    }
+    .hero-inner { max-width: 1200px; margin: 0 auto; width: 100%; position: relative; z-index: 1; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 10px;
+      border: 1px solid rgba(232,184,75,0.4);
+      border-radius: 2px;
+      padding: 7px 16px;
+      margin-bottom: 36px;
+      animation: fadeUp 0.5s ease both;
+    }
+    .hero-badge-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--yellow); animation: blink 2s ease infinite; }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+    .hero-badge span { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--yellow); }
+    .hero-title {
+      font-size: clamp(3rem, 6.5vw, 5.5rem);
+      font-weight: 800; line-height: 1.0;
+      color: var(--white); margin-bottom: 28px;
+      max-width: 700px;
+      animation: fadeUp 0.6s 0.1s ease both;
+    }
+    .hero-title em { font-style: italic; color: var(--yellow); }
+    .hero-sub {
+      font-size: 1.1rem; color: rgba(255,255,255,0.65);
+      line-height: 1.7; max-width: 520px; margin-bottom: 44px;
+      font-weight: 400; animation: fadeUp 0.6s 0.2s ease both;
+    }
+    .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; animation: fadeUp 0.6s 0.3s ease both; }
+    .hero-stats {
+      display: flex; gap: 0;
+      margin-top: 72px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      animation: fadeUp 0.6s 0.4s ease both;
+    }
+    .hero-stat {
+      padding: 28px 40px 0 0;
+      margin-right: 40px;
+      border-right: 1px solid rgba(255,255,255,0.1);
+      margin-top: 28px;
+    }
+    .hero-stat:last-child { border-right: none; }
+    .hero-stat-num {
+      font-size: 2.8rem; font-weight: 800;
+      color: var(--yellow); display: block; line-height: 1;
+    }
+    .hero-stat-label { font-size: 0.78rem; color: rgba(255,255,255,0.45); text-transform: uppercase; letter-spacing: 0.06em; margin-top: 5px; }
+
+    @keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+
+    /* ── TICKER ── */
+    .ticker {
+      background: var(--green); overflow: hidden;
+      padding: 13px 0; border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .ticker-track { display: flex; animation: ticker 28s linear infinite; white-space: nowrap; }
+    .ticker-item {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 0 28px; font-size: 0.75rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: rgba(255,255,255,0.7); border-right: 1px solid rgba(255,255,255,0.15); flex-shrink: 0;
+    }
+    .ticker-item .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--yellow); flex-shrink: 0; }
+    @keyframes ticker { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+    /* ── PROCESO ── */
+    #proceso { padding: 96px 5%; }
+    .proceso-inner { max-width: 1200px; margin: 0 auto; }
+    .proceso-header { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: end; margin-bottom: 64px; }
+    .steps-row { display: grid; grid-template-columns: repeat(4,1fr); gap: 0; position: relative; }
+    .steps-row::before {
+      content: ''; position: absolute;
+      top: 32px; left: 8%; right: 8%; height: 1px;
+      background: linear-gradient(90deg, var(--green), rgba(30,77,43,0.2));
+    }
+    .step { padding: 0 20px; text-align: center; position: relative; z-index: 1; }
+    .step-circle {
+      width: 64px; height: 64px; border-radius: 50%;
+      border: 2px solid var(--green); background: var(--white);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem; font-weight: 800; color: var(--green);
+      margin: 0 auto 20px; transition: all 0.25s;
+    }
+    .step:hover .step-circle { background: var(--green); color: var(--white); box-shadow: 0 8px 24px rgba(30,77,43,0.3); }
+    .step-title { font-weight: 700; font-size: 0.97rem; color: var(--text); margin-bottom: 8px; }
+    .step-desc { font-size: 0.83rem; color: var(--gray-600); line-height: 1.6; }
+
+    /* ── PROGRAMAS PREVIEW ── */
+    #programas-preview { padding: 0 5% 96px; }
+    .programas-inner { max-width: 1200px; margin: 0 auto; }
+    .programas-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 40px; flex-wrap: wrap; gap: 16px; }
+    .programas-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+    .prog-card {
+      border: 1.5px solid var(--border); border-radius: 8px;
+      padding: 44px 36px; position: relative; overflow: hidden;
+      transition: all 0.3s; text-decoration: none; color: inherit; display: block;
+      background: var(--white);
+    }
+    .prog-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+      background: var(--green); transform: scaleX(0); transform-origin: left; transition: transform 0.3s;
+    }
+    .prog-card:hover { border-color: var(--green); transform: translateY(-4px); box-shadow: 0 16px 48px rgba(30,77,43,0.12); }
+    .prog-card:hover::before { transform: scaleX(1); }
+    .prog-card-num {
+      font-size: 4rem; font-weight: 800; color: rgba(30,77,43,0.08);
+      line-height: 1; margin-bottom: 16px; display: block;
+    }
+    .prog-card-level {
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--green); margin-bottom: 6px;
+    }
+    .prog-card-name { font-size: 1.9rem; font-weight: 800; color: var(--text); margin-bottom: 12px; line-height: 1.1; }
+    .prog-card-desc { font-size: 0.87rem; color: var(--gray-600); line-height: 1.65; margin-bottom: 28px; }
+    .prog-card-link { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--green); }
+
+    /* ── WHY — GREEN SECTION ── */
+    #porque {
+      background: var(--green); padding: 96px 5%;
+    }
+    .porque-inner { max-width: 1200px; margin: 0 auto; }
+    .porque-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; margin-top: 56px; }
+    .porque-features { display: flex; flex-direction: column; gap: 0; }
+    .pf-item {
+      display: flex; gap: 20px; align-items: flex-start;
+      padding: 24px 0; border-bottom: 1px solid rgba(255,255,255,0.12);
+    }
+    .pf-item:first-child { padding-top: 0; }
+    .pf-icon {
+      width: 44px; height: 44px; flex-shrink: 0;
+      border-radius: 6px; background: rgba(255,255,255,0.1);
+      display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
+    }
+    .pf-text h4 { font-weight: 700; font-size: 1rem; color: var(--white); margin-bottom: 5px; }
+    .pf-text p { font-size: 0.85rem; color: rgba(255,255,255,0.6); line-height: 1.65; }
+    .porque-visual {
+      background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 8px; padding: 44px;
+    }
+    .pv-stat { margin-bottom: 32px; }
+    .pv-num { font-size: 4.5rem; font-weight: 800; color: var(--yellow); line-height: 1; display: block; }
+    .pv-label { font-size: 0.85rem; color: rgba(255,255,255,0.6); margin-top: 6px; }
+    .pv-divider { height: 1px; background: rgba(255,255,255,0.12); margin: 32px 0; }
+    .pv-list { display: flex; flex-direction: column; gap: 12px; }
+    .pv-list-item {
+      display: flex; align-items: center; gap: 12px;
+      font-size: 0.88rem; color: rgba(255,255,255,0.75);
+    }
+    .pv-list-item::before { content:''; width:8px; height:8px; border-radius:50%; background:var(--yellow); flex-shrink:0; }
+
+    /* ── TESTIMONIOS ── */
+    #testimonios { padding: 96px 5%; background: var(--gray-100); }
+    .test-inner { max-width: 1200px; margin: 0 auto; }
+    .test-header { margin-bottom: 52px; }
+    .test-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+    .test-card {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 8px; padding: 36px; transition: all 0.25s;
+    }
+    .test-card:hover { box-shadow: 0 12px 40px rgba(30,77,43,0.1); transform: translateY(-3px); border-color: var(--green); }
+    .test-stars { color: var(--yellow); font-size: 0.85rem; margin-bottom: 16px; }
+    .test-text { font-size: 0.93rem; color: var(--gray-600); line-height: 1.75; margin-bottom: 28px; }
+    .test-author { display: flex; align-items: center; gap: 14px; }
+    .test-avatar {
+      width: 46px; height: 46px; border-radius: 50%;
+      background: var(--green); display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: 0.9rem; color: var(--white);
+    }
+    .test-name { font-weight: 700; font-size: 0.92rem; color: var(--text); }
+    .test-degree { font-size: 0.75rem; color: var(--green); font-weight: 600; }
+
+    /* ── CTA FINAL — GREEN ── */
+    #cta-final { background: var(--green); padding: 96px 5%; }
+    .cta-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr auto; gap: 60px; align-items: center; }
+    .cta-title { font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; color: var(--white); line-height: 1.1; margin-bottom: 12px; }
+    .cta-title em { font-style: italic; color: var(--yellow); }
+    .cta-sub { font-size: 1rem; color: rgba(255,255,255,0.65); font-weight: 400; }
+    .cta-btns { display: flex; flex-direction: column; gap: 12px; flex-shrink: 0; }
+
+    @media(max-width:960px){
+      .proceso-header,.porque-grid,.cta-inner{ grid-template-columns:1fr; }
+      .programas-grid,.test-grid{ grid-template-columns:1fr; }
+      .steps-row{ grid-template-columns:1fr 1fr; gap:32px; }
+      .steps-row::before{ display:none; }
+      .hero-stats{ flex-wrap:wrap; }
+      .cta-btns{ flex-direction:row; flex-wrap:wrap; }
+    }
+    @media(max-width:600px){
+      #hero{ padding:60px 5% 72px; }
+      .hero-stat{ padding:20px 24px 0 0; margin-right:24px; }
+    }
+  </style>
+</head>
+<body>
+<div id="ann-root"></div>
+<div id="nav-root"></div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">
+      <div class="hero-badge-dot"></div>
+      <span>Validez oficial ante la SEP</span>
+    </div>
+    <h1 class="hero-title">Tu experiencia<br/>merece un<br/><em>título oficial</em></h1>
+    <p class="hero-sub">Convertimos tu trayectoria profesional en un Título y Cédula Profesional. Sin clases presenciales, con acompañamiento en cada paso.</p>
+    <div class="hero-btns">
+      <a href="https://wa.me/525659227963" target="_blank" class="btn-yellow">
+        Hablar con un asesor
+      </a>
+      <a href="servicios.html" class="btn-outline-white">Ver programas →</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <span class="hero-stat-num">15+</span>
+        <span class="hero-stat-label">Licenciaturas</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-num">6</span>
+        <span class="hero-stat-label">Maestrías</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-num">3</span>
+        <span class="hero-stat-label">Doctorados</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-track" id="ticker-track"></div>
+</div>
+
+<!-- PROCESO -->
+<section id="proceso">
+  <div class="proceso-inner">
+    <div class="proceso-header">
+      <div>
+        <span class="section-label section-label-green">¿Cómo funciona?</span>
+        <h2 class="section-title reveal">Un proceso claro,<br/><em>resultados reales</em></h2>
+      </div>
+      <p class="section-sub reveal reveal-delay-1">Te guiamos desde la primera llamada hasta que tengas tu Título y Cédula Profesional en manos.</p>
+    </div>
+    <div class="steps-row">
+      <div class="step reveal reveal-delay-1">
+        <div class="step-circle">01</div>
+        <h3 class="step-title">Contáctanos</h3>
+        <p class="step-desc">Primera consulta gratuita. Sin compromiso.</p>
+      </div>
+      <div class="step reveal reveal-delay-2">
+        <div class="step-circle">02</div>
+        <h3 class="step-title">Evaluamos tu perfil</h3>
+        <p class="step-desc">Analizamos tu experiencia y definimos el programa ideal.</p>
+      </div>
+      <div class="step reveal reveal-delay-3">
+        <div class="step-circle">03</div>
+        <h3 class="step-title">Iniciamos el trámite</h3>
+        <p class="step-desc">Gestionamos toda la documentación ante la institución.</p>
+      </div>
+      <div class="step reveal reveal-delay-4">
+        <div class="step-circle">04</div>
+        <h3 class="step-title">Recibes tu título</h3>
+        <p class="step-desc">Título y Cédula Profesional con validez oficial SEP.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAMAS -->
+<section id="programas-preview">
+  <div class="programas-inner">
+    <div class="programas-header">
+      <div>
+        <span class="section-label section-label-green">Nuestros programas</span>
+        <h2 class="section-title reveal">Encuentra tu<br/><em>nivel académico</em></h2>
+      </div>
+      <a href="servicios.html" class="btn-outline-green reveal">Ver todos →</a>
+    </div>
+    <div class="programas-grid">
+      <a href="servicios.html#licenciaturas" class="prog-card reveal reveal-delay-1">
+        <span class="prog-card-num">15</span>
+        <p class="prog-card-level">Grado básico</p>
+        <h3 class="prog-card-name">Licenciaturas</h3>
+        <p class="prog-card-desc">Desde Administración y Derecho hasta Ingeniería en Sistemas y Mercadotecnia Digital.</p>
+        <span class="prog-card-link">Ver programas →</span>
+      </a>
+      <a href="servicios.html#maestrias" class="prog-card reveal reveal-delay-2">
+        <span class="prog-card-num">6</span>
+        <p class="prog-card-level">Grado avanzado</p>
+        <h3 class="prog-card-name">Maestrías</h3>
+        <p class="prog-card-desc">Educación, Negocios, Finanzas, Gobierno, Ingeniería y Juicios Orales.</p>
+        <span class="prog-card-link">Ver programas →</span>
+      </a>
+      <a href="servicios.html#doctorados" class="prog-card reveal reveal-delay-3">
+        <span class="prog-card-num">3</span>
+        <p class="prog-card-level">Grado superior</p>
+        <h3 class="prog-card-name">Doctorados</h3>
+        <p class="prog-card-desc">Educación, Derecho Procesal y Administración y Finanzas.</p>
+        <span class="prog-card-link">Ver programas →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- POR QUÉ -->
+<section id="porque">
+  <div class="porque-inner">
+    <span class="section-label">¿Por qué elegirnos?</span>
+    <h2 class="section-title section-title-white reveal">Tu trayectoria<br/>en <em>buenas manos</em></h2>
+    <div class="porque-grid">
+      <div class="porque-features">
+        <div class="pf-item reveal reveal-delay-1">
+          <div class="pf-icon">✅</div>
+          <div class="pf-text">
+            <h4>Validez oficial SEP</h4>
+            <p>Tu título y cédula son verificables en el sistema SItítulo de la Secretaría de Educación Pública.</p>
+          </div>
+        </div>
+        <div class="pf-item reveal reveal-delay-2">
+          <div class="pf-icon">🤝</div>
+          <div class="pf-text">
+            <h4>Acompañamiento personalizado</h4>
+            <p>Un asesor dedicado te guía en todo momento. No estás solo en el proceso.</p>
+          </div>
+        </div>
+        <div class="pf-item reveal reveal-delay-3">
+          <div class="pf-icon">⚡</div>
+          <div class="pf-text">
+            <h4>Proceso eficiente</h4>
+            <p>Sabemos cómo agilizar los trámites para que obtengas tu grado en el menor tiempo posible.</p>
+          </div>
+        </div>
+        <div class="pf-item reveal reveal-delay-4">
+          <div class="pf-icon">🔒</div>
+          <div class="pf-text">
+            <h4>Confidencialidad total</h4>
+            <p>Tu información y documentación son manejadas con la mayor discreción.</p>
+          </div>
+        </div>
+      </div>
+      <div class="porque-visual reveal reveal-delay-2">
+        <div class="pv-stat">
+          <span class="pv-num">24+</span>
+          <p class="pv-label">Programas académicos disponibles</p>
+        </div>
+        <div class="pv-divider"></div>
+        <div class="pv-list">
+          <div class="pv-list-item">Titulación por experiencia laboral</div>
+          <div class="pv-list-item">Cédula Profesional verificable en SEP</div>
+          <div class="pv-list-item">Sin clases presenciales continuas</div>
+          <div class="pv-list-item">Asesor personal en todo el proceso</div>
+          <div class="pv-list-item">Atención WhatsApp 7 días a la semana</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIOS -->
+<section id="testimonios">
+  <div class="test-inner">
+    <div class="test-header">
+      <span class="section-label section-label-green">Testimonios</span>
+      <h2 class="section-title reveal">Lo que dicen<br/><em>nuestros titulados</em></h2>
+    </div>
+    <div class="test-grid">
+      <div class="test-card reveal reveal-delay-1">
+        <div class="test-stars">★★★★★</div>
+        <p class="test-text">Llevaba 15 años trabajando en contabilidad sin título. Gracias a Gestoría Escolar hoy tengo mi cédula profesional y pude ascender en mi empresa.</p>
+        <div class="test-author">
+          <div class="test-avatar">MR</div>
+          <div>
+            <div class="test-name">María R.</div>
+            <div class="test-degree">Lic. en Contaduría</div>
+          </div>
+        </div>
+      </div>
+      <div class="test-card reveal reveal-delay-2">
+        <div class="test-stars">★★★★★</div>
+        <p class="test-text">El proceso fue más sencillo de lo que esperaba. El asesor me orientó en cada paso y en menos tiempo del que imaginé ya tenía mi título.</p>
+        <div class="test-author">
+          <div class="test-avatar">JL</div>
+          <div>
+            <div class="test-name">Jorge L.</div>
+            <div class="test-degree">Maestría en Gestión de Negocios</div>
+          </div>
+        </div>
+      </div>
+      <div class="test-card reveal reveal-delay-3">
+        <div class="test-stars">★★★★★</div>
+        <p class="test-text">Siempre estuvieron disponibles para mis dudas. Atención profesional y resultados reales. Los recomiendo ampliamente a cualquier profesional.</p>
+        <div class="test-author">
+          <div class="test-avatar">AP</div>
+          <div>
+            <div class="test-name">Ana P.</div>
+            <div class="test-degree">Lic. en Derecho</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section id="cta-final">
+  <div class="cta-inner">
+    <div class="reveal">
+      <h2 class="cta-title">¿Listo para obtener<br/>tu <em>título oficial</em>?</h2>
+      <p class="cta-sub">La primera consulta es gratuita y sin compromiso.</p>
+    </div>
+    <div class="cta-btns reveal reveal-delay-1">
+      <a href="https://wa.me/525659227963" target="_blank" class="btn-yellow">Hablar por WhatsApp</a>
+      <a href="contacto.html" class="btn-outline-white">Formulario de contacto</a>
+    </div>
+  </div>
+</section>
+
+<div id="footer-root"></div>
+<script src="components.js"></script>
+<script>
+  initComponents('index');
+  const items = ['Licenciaturas','Maestrías','Doctorados','Validez SEP','Sin clases presenciales','Cédula Profesional','Titulación por Experiencia','Asesor Dedicado','24+ Programas','Proceso Guiado'];
+  const track = document.getElementById('ticker-track');
+  [...items,...items].forEach(t => {
+    const el = document.createElement('span');
+    el.className = 'ticker-item';
+    el.innerHTML = `<span class="dot"></span>${t}`;
+    track.appendChild(el);
+  });
+</script>
+</body>
+</html>
