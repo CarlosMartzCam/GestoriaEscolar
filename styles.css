@@ -344,3 +344,26 @@ nav.open .nav-actions {
     align-items: center;
   }
 }
+
+/* Ajuste definitivo para el mapa en móvil */
+@media (max-width: 850px) {
+  .ubicacion-grid {
+    display: block !important; /* Forzamos que dejen de ser columnas */
+    padding: 0 !important;
+  }
+
+  .ubicacion-grid .reveal {
+    margin-bottom: 40px;
+    text-align: center;
+  }
+
+  .ubicacion-grid iframe {
+    width: 100% !important;
+    height: 300px !important; /* Altura más cómoda para celular */
+    border-radius: 12px;
+  }
+
+  #ubicacion {
+    padding: 60px 5% !important; /* Reducimos el espacio blanco lateral */
+  }
+}
