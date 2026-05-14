@@ -232,3 +232,27 @@ nav.open .nav-actions {
   padding:16px 5%; gap:10px;
   background:var(--white); border-top:1px solid var(--border);
 }
+
+/* Solución para el Grid de Modalidades */
+.modalidad-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+@media (max-width: 850px) {
+  .modalidad-grid {
+    grid-template-columns: 1fr; /* Apila las tarjetas una sobre otra */
+  }
+  
+  #modalidad .reveal {
+    padding: 40px 24px !important; /* Reduce el padding interno en móvil */
+  }
+}
+
+/* Ajuste adicional para que los títulos no se corten */
+@media (max-width: 480px) {
+  #modalidad h3 {
+    font-size: 1.5rem !important;
+  }
+}
