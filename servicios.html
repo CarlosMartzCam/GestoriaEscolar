@@ -81,12 +81,33 @@
 
 <nav class="prog-nav">
   <div class="prog-nav-inner">
-    <a href="#licenciaturas" class="prog-tab active">Licenciaturas</a>
+    <a href="#bachillerato" class="prog-tab active">Bachillerato</a>
+    <a href="#licenciaturas" class="prog-tab">Licenciaturas</a>
     <a href="#maestrias" class="prog-tab">Maestrías</a>
     <a href="#doctorados" class="prog-tab">Doctorados</a>
-    <a href="#bachillerato" class="prog-tab">Bachillerato</a>
   </div>
 </nav>
+
+<section class="prog-section" id="bachillerato">
+  <div class="prog-section-inner">
+    <div class="prog-section-header">
+      <div>
+        <span class="section-label section-label-green">Nivel medio superior</span>
+        <h2 class="prog-section-title"><em>Bachillerato</em></h2>
+        <p class="prog-count">Programa binacional</p>
+      </div>
+      <p class="section-sub">El bachillerato de Estados Unidos se revalida en México con validez oficial ante la SEP.</p>
+    </div>
+    <div class="prog-grid">
+      <div class="prog-item reveal" style="grid-column:1/2">
+        <div class="prog-item-num">01</div>
+        <h3 class="prog-item-name">Bachillerato Binacional Estados Unidos-México</h3>
+        <p style="font-size:0.83rem;color:var(--gray-600);line-height:1.6;margin-bottom:14px;">El bachillerato emitido en Estados Unidos es revalidado en México con validez oficial ante la SEP.</p>
+        <a href="https://wa.me/525516502103" target="_blank" class="prog-item-cta">Consultar →</a>
+      </div>
+    </div>
+  </div>
+</section>
 
 <section class="prog-section" id="licenciaturas">
   <div class="prog-section-inner">
@@ -157,27 +178,6 @@
   </div>
 </section>
 
-<section class="prog-section" id="bachillerato">
-  <div class="prog-section-inner">
-    <div class="prog-section-header">
-      <div>
-        <span class="section-label section-label-green">Nivel medio superior</span>
-        <h2 class="prog-section-title"><em>Bachillerato</em></h2>
-        <p class="prog-count">Programa binacional</p>
-      </div>
-      <p class="section-sub">Válido en México y Estados Unidos. Se revalida ante las autoridades educativas mexicanas.</p>
-    </div>
-    <div class="prog-grid">
-      <div class="prog-item reveal" style="grid-column:1/2">
-        <div class="prog-item-num">01</div>
-        <h3 class="prog-item-name">Bachillerato Binacional México-Estados Unidos</h3>
-        <p style="font-size:0.83rem;color:var(--gray-600);line-height:1.6;margin-bottom:14px;">Reconocido en ambos países. Con validez oficial y revalidación ante la SEP en México.</p>
-        <a href="https://wa.me/525516502103" target="_blank" class="prog-item-cta">Consultar →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
 <div class="prog-cta">
   <div class="prog-cta-inner reveal">
     <h2>¿No encuentras tu área? <em>Consúltanos</em></h2>
@@ -193,7 +193,7 @@
 <script src="components.js"></script>
 <script>
   initComponents('servicios');
-  const secs = ['licenciaturas','maestrias','doctorados'];
+  const secs = ['bachillerato','licenciaturas','maestrias','doctorados'];
   const tabs = document.querySelectorAll('.prog-tab');
   window.addEventListener('scroll', () => {
     let cur = secs[0];

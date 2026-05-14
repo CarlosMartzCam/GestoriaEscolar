@@ -46,6 +46,7 @@ const FOOTER_HTML = `
     <div class="footer-col">
       <h4>Programas</h4>
       <ul>
+        <li><a href="servicios.html#bachillerato">Bachillerato</a></li>
         <li><a href="servicios.html#licenciaturas">Licenciaturas</a></li>
         <li><a href="servicios.html#maestrias">Maestrías</a></li>
         <li><a href="servicios.html#doctorados">Doctorados</a></li>
