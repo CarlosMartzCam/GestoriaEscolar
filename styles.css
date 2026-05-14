@@ -256,3 +256,78 @@ nav.open .nav-actions {
     font-size: 1.5rem !important;
   }
 }
+
+/* ── AJUSTES DE PROGRAMAS (4 TARJETAS) ── */
+.programas-grid {
+  display: grid;
+  /* Crea columnas automáticas de mínimo 280px; si no caben 4, pone 2 y 2 */
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  margin-top: 48px;
+}
+
+@media (max-width: 960px) {
+  .programas-grid {
+    /* En tablets/celulares se pone una sola columna */
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Ajuste para las tarjetas de programas */
+.prog-card {
+  text-decoration: none;
+  background: var(--gray-100);
+  padding: 32px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.prog-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--green);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.05);
+}
+
+.prog-card-num {
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: var(--green);
+  opacity: 0.4;
+  margin-bottom: 16px;
+}
+
+.prog-card-level {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--gray-600);
+  margin-bottom: 8px;
+}
+
+.prog-card-name {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--text);
+  margin-bottom: 12px;
+}
+
+.prog-card-desc {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--gray-600);
+  margin-bottom: 24px;
+}
+
+.prog-card-link {
+  margin-top: auto;
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: var(--green);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
