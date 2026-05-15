@@ -188,7 +188,7 @@
       </div>
       <div class="form-group"><label>Mensaje (opcional)</label><textarea id="f-msg" placeholder="Cuéntanos tu experiencia o tus dudas..."></textarea></div>
       <button class="btn-yellow form-submit" onclick="handleSubmit()">Enviar consulta →</button>
-      <div class="form-success" id="form-success"><p>✓ ¡Recibido! Un asesor te contactará pronto por WhatsApp.</p></div>
+      <div class="form-success" id="form-success"><p>✓ ¡Recibido! Un asesor te contactará pronto por WhatsApp y correo.</p></div>
     </div>
   </div>
 </section>
@@ -203,18 +203,36 @@
     document.querySelectorAll('.faq-mini-item').forEach(i => i.classList.remove('open'));
     if (!open) item.classList.add('open');
   }
-  function handleSubmit() {
+  async function handleSubmit() {
     const n = document.getElementById('f-nombre').value.trim();
     const t = document.getElementById('f-tel').value.trim();
     if (!n || !t) { alert('Por favor ingresa tu nombre y teléfono.'); return; }
     const niv = document.getElementById('f-nivel').value;
     const prog = document.getElementById('f-prog').value;
     const msg = document.getElementById('f-msg').value.trim();
+
+    // Enviar a Formspree
+    fetch('https://formspree.io/f/xzdolzoy', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        nombre: n,
+        apellido: document.getElementById('f-apellido').value.trim(),
+        telefono: t,
+        nivel: niv,
+        programa: prog,
+        mensaje: msg,
+        _replyto: 'gestoriaescolar33@gmail.com'
+      })
+    });
+
+    // Abrir WhatsApp
     let wa = `Hola! Me interesa una consulta gratuita.\n\nNombre: ${n}\nTeléfono: ${t}`;
     if(niv) wa += `\nNivel: ${niv}`;
     if(prog) wa += `\nPrograma: ${prog}`;
     if(msg) wa += `\nMensaje: ${msg}`;
     window.open(`https://wa.me/525516502103?text=${encodeURIComponent(wa)}`,'_blank');
+
     document.getElementById('form-success').style.display = 'block';
     document.querySelector('.form-submit').style.display = 'none';
   }
