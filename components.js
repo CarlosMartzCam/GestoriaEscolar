@@ -39,7 +39,7 @@ const FOOTER_HTML = `
     <div>
       <a href="index.html" class="nav-logo" style="text-decoration:none">
         ${SHIELD_SVG}
-        <div class="nav-logo-text">Gestoría Escolar<span>Cecuifj</span></div>
+        <div class="nav-logo-text">Gestoría Escolar<span></span></div>
       </a>
       <p class="footer-brand-desc">Titulación por experiencia laboral con validez oficial ante la SEP. Licenciaturas, Maestrías y Doctorados.</p>
     </div>
